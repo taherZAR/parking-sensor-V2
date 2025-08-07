@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "author": "Taher Zeramdini",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": -9.6,
+      "left": 43.24,
+      "attrs": { "env": "micropython-20231227-v1.22.0" }
+    },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "ultrasonic1",
+      "top": -94.5,
+      "left": -176.9,
+      "attrs": { "distance": "105" }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": 69.6,
+      "left": 251.4,
+      "attrs": { "volume": "0.1" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -51.6,
+      "left": 253.4,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": 207.8,
+      "left": -124.8,
+      "attrs": { "color": "green", "xray": "1" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 13.55,
+      "left": 192,
+      "attrs": { "value": "10000000" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:GND.1", "ultrasonic1:GND", "black", [ "h0" ] ],
+    [ "esp:15", "bz1:2", "red", [ "v9.6", "h144" ] ],
+    [ "bz1:1", "esp:GND.3", "black", [ "v0", "h-86.4", "v-76.8" ] ],
+    [ "led1:C", "r2:2", "black", [ "v0" ] ],
+    [ "esp:GND.2", "r2:1", "black", [ "v0" ] ],
+    [ "led1:A", "esp:21", "red", [ "v0" ] ],
+    [ "esp:5V", "ultrasonic1:VCC", "red", [ "h0" ] ],
+    [ "esp:2", "ultrasonic1:ECHO", "cyan", [ "h28.8", "v-192", "h-153.6", "v76.8", "h-105.6" ] ],
+    [ "esp:32", "btn1:1.l", "red", [ "h-201.45", "v144" ] ],
+    [ "esp:5", "ultrasonic1:TRIG", "green", [ "h38.4", "v-163.2", "h-182.4", "v86.4", "h-96" ] ],
+    [ "esp:GND.3", "btn1:2.r", "black", [ "h19.2", "v153.6" ] ]
+  ],
+  "dependencies": {}
+}
